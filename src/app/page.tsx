@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { getChannels, getMatches } from '@/lib/db';
 import DashboardClient from '@/components/DashboardClient';
-import { Suspense } from 'react';
+
 
 // Disable static rendering cache to ensure matches & channels are loaded dynamically in real time
 export const revalidate = 0;
@@ -43,17 +43,10 @@ export default async function HomePage() {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Suspense fallback={
-          <div className="card-glass" style={{ padding: '60px', textAlign: 'center', display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'center' }}>
-            <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />
-            <span className="text-slate-400 font-semibold text-sm">Loading Live TV Hub...</span>
-          </div>
-        }>
-          <DashboardClient 
-            initialChannels={safeChannels} 
-            initialMatches={matches} 
-          />
-        </Suspense>
+        <DashboardClient 
+          initialChannels={safeChannels} 
+          initialMatches={matches} 
+        />
       </>
     );
   } catch (error) {
