@@ -78,6 +78,22 @@ export default function VideoPlayer({ obfuscatedUrl, channelName, onError }: Vid
 
         playerRef.current = new Plyr(video, defaultOptions);
         
+        playerRef.current.on('enterfullscreen', () => {
+          try {
+            if (screen.orientation && screen.orientation.lock) {
+              screen.orientation.lock('landscape').catch(() => {});
+            }
+          } catch (e) {}
+        });
+
+        playerRef.current.on('exitfullscreen', () => {
+          try {
+            if (screen.orientation && screen.orientation.unlock) {
+              screen.orientation.unlock();
+            }
+          } catch (e) {}
+        });
+        
         // Ensure auto play policy
         const promise = video.play();
         if (promise !== undefined) {
@@ -112,6 +128,22 @@ export default function VideoPlayer({ obfuscatedUrl, channelName, onError }: Vid
       // Native support (Safari)
       video.src = url;
       playerRef.current = new Plyr(video, defaultOptions);
+      
+      playerRef.current.on('enterfullscreen', () => {
+        try {
+          if (screen.orientation && screen.orientation.lock) {
+            screen.orientation.lock('landscape').catch(() => {});
+          }
+        } catch (e) {}
+      });
+
+      playerRef.current.on('exitfullscreen', () => {
+        try {
+          if (screen.orientation && screen.orientation.unlock) {
+            screen.orientation.unlock();
+          }
+        } catch (e) {}
+      });
       
       const promise = video.play();
       if (promise !== undefined) {
