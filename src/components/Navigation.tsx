@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Tv, Trophy } from 'lucide-react';
+import { Tv, Trophy, Home } from 'lucide-react';
 
 export default function Navigation() {
   const pathname = usePathname();
@@ -11,7 +11,8 @@ export default function Navigation() {
   const [isHovered, setIsHovered] = useState(false);
 
   const navItems = [
-    { name: 'Live TV', path: '/', icon: Tv },
+    { name: 'Home', path: '/', icon: Home },
+    { name: 'Live TV', path: '/live', icon: Tv },
     { name: 'FIFA Matches', path: '/matches', icon: Trophy },
   ];
 
