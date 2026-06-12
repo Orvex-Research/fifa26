@@ -1,0 +1,60 @@
+<USER_REQUEST>
+Group B · MD1
+BMO Field, Toronto
+· 👥 45K
+⏰ 15:00
+Canada
+Canada
+
+CAN
+
+VS
+Bosnia and Herzegovina
+Bosnia and Herzegovina
+
+BIH
+
+00
+Hours
+00
+Min
+00
+Sec
+⚡ View Match Details & Goals
+🗓️ Jun 12, 09:00 PM (BD Time)
+Group D · MD1
+SoFi Stadium, Los Angeles (Inglewood)
+· 👥 70K
+⏰ 18:00
+United States
+United States
+
+USA
+
+VS
+Paraguay
+Paraguay
+
+PAR
+
+00
+Hours
+06
+Min
+14
+Sec
+⚡ View Match Details & Goals  euita match melaw
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-06-12T23:54:05+06:00.
+
+The user's current state is as follows:
+Active Document: f:\fifa26.eu.cc\src\components\MatchesClient.tsx (LANGUAGE_TSX)
+Cursor is on line: 1169
+Other open documents:
+- f:\fifa26.eu.cc\src\lib\db.ts (LANGUAGE_TYPESCRIPT)
+- f:\fifa26.eu.cc\src\app\layout.tsx (LANGUAGE_TSX)
+- f:\fifa26.eu.cc\src\components\MatchesClient.tsx (LANGUAGE_TSX)
+- f:\fifa26.eu.cc\src\app\api\matches\sync\route.ts (LANGUAGE_TYPESCRIPT)
+- f:\fifa26.eu.cc\vercel.json (LANGUAGE_JSON)
+</ADDITIONAL_METADATA>
