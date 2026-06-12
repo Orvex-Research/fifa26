@@ -68,6 +68,8 @@ async function kvRequest(action: string, args: any[] = []): Promise<any> {
   return data.result;
 }
 
+import defaultDbData from '@/data/db.json';
+
 // Read database
 export async function readDb(): Promise<DbData> {
   if (isKvConfigured()) {
@@ -81,9 +83,8 @@ export async function readDb(): Promise<DbData> {
       const settings: AppSettings | undefined = settingsRaw ? JSON.parse(settingsRaw) : undefined;
 
       // If KV is empty but we have local seed data, seed the KV once
-      if (channels.length === 0 && fs.existsSync(LOCAL_DB_PATH)) {
-        const fileContent = fs.readFileSync(LOCAL_DB_PATH, 'utf-8');
-        const localData: DbData = JSON.parse(fileContent);
+      if (channels.length === 0 && defaultDbData) {
+        const localData = defaultDbData as unknown as DbData;
         await writeDb(localData);
         return localData;
       }
@@ -96,9 +97,8 @@ export async function readDb(): Promise<DbData> {
 
   // Local JSON fallback (or if Vercel KV failed)
   try {
-    if (fs.existsSync(LOCAL_DB_PATH)) {
-      const fileContent = fs.readFileSync(LOCAL_DB_PATH, 'utf-8');
-      return JSON.parse(fileContent) as DbData;
+    if (defaultDbData) {
+      return defaultDbData as unknown as DbData;
     }
   } catch (e) {
     console.error('Failed to read local DB:', e);
