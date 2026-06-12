@@ -146,9 +146,9 @@ export default function DashboardClient({ initialChannels, initialMatches }: Das
       setObfuscatedUrl(data.stream);
     } catch (e) {
       console.error('Stream loading error:', e);
-      alert('Unable to load channel stream. It might be offline.');
-      setSelectedChannel(null);
-      setChannels(prev => prev.filter(c => c.id !== channel.id));
+      // Do not use alert() as it blocks rendering or causes issues with bots
+      // Do not clear selectedChannel to avoid infinite auto-play loop
+      // Do not delete the channel from the list
     } finally {
       setLoadingStream(false);
     }
@@ -166,6 +166,7 @@ export default function DashboardClient({ initialChannels, initialMatches }: Das
 
   // Auto-play first channel on mount if no play query parameter is provided
   useEffect(() => {
+    // Only auto-play if we haven't selected a channel yet
     if (channels.length > 0 && !playParam && !selectedChannel) {
       handleSelectChannel(channels[0]);
     }
@@ -226,8 +227,9 @@ export default function DashboardClient({ initialChannels, initialMatches }: Das
                         body: JSON.stringify({ channelId: selectedChannel.id }),
                       }).catch(() => {});
                       
-                      setChannels(prev => prev.filter(c => c.id !== selectedChannel.id));
-                      setSelectedChannel(null);
+                      // Prevent Googlebot or adblockers from triggering a loop of channel deletions
+                      // setChannels(prev => prev.filter(c => c.id !== selectedChannel.id));
+                      // setSelectedChannel(null);
                     }}
                   />
                 </div>
